@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors'
 import {router} from "./Routes/userRoutes";
 import { kbRouter } from './Routes/kbRouter';
+import { agentRouter } from './Routes/agentRouter';
 
 
 const app = express();
@@ -18,5 +19,6 @@ app.use(cors({
 
 app.use("/api/v1/user",router);
 app.use("/api/v1/agent",kbRouter);
+app.use("/api/v1/askBot",agentRouter)
 
 export default app;

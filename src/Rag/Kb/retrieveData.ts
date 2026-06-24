@@ -7,7 +7,7 @@ export interface RetrieverResult {
 };
 
 export async function retreiveRelevantChunks
-(query : string, namespace : string='default', k : number=2) : Promise<RetrieverResult>{
+(query : string, k : number=5) : Promise<RetrieverResult>{
 
     if(!query.trim()){
         return {
@@ -18,7 +18,7 @@ export async function retreiveRelevantChunks
 
     const vectorstore = await getVectorStore();
 
-    const results = await vectorstore.similaritySearchWithScore(query,k,{namespace});
+    const results = await vectorstore.similaritySearchWithScore(query,k);
 
     if(!results?.length){
         return {

@@ -1,0 +1,127 @@
+Project Name: Web-LLM Bot
+About Project : An advanced, context-aware AI chatbot and knowledge engine designed to deliver accurate, real-time answers by combining local knowledge with dynamic web intelligence. Built using the MERN stack, TypeScript, and LangChain, the application optimizes response relevance by integrating a real-time web search loop powered by the Tavily AI API. When a user query requires external validation or up-to-date facts, the system automatically routes the request to execute targeted web searches, intelligently filtering and compressing verbose live data into clean, dense context snapshots. By injecting this real-time summarized context directly into the LLM context window, the engine successfully minimizes hallucinations and delivers highly precise, source-backed responses, all wrapped in a modern UI built with Tailwind CSS.
+Github Frontend : https://github.com/saisandeepkoritala/Web-LLM
+Github Backend : https://github.com/saisandeepkoritala/Web-LLM-Server
+Live Site  : https://saisandeep-koritala-web-llm.netlify.app/
+
+Project Name : Blogging Site
+About Project : A modern, full-stack blogging platform engineered to deliver a fast, content-driven user experience where creators can seamlessly publish dynamic media. Built using the MERN stack, the platform features a robust content management system that allows users to upload comprehensive blog posts complete with structured titles, rich body text, and integrated image assets. The frontend leverages React and Vanilla CSS to ensure a highly responsive, pixel-perfect UI with optimized typography for maximum readability. Backed by MongoDB for efficient document storage and a secure authentication flow, the platform efficiently handles multi-media data management and dynamic content rendering, providing a polished, high-performance interface for both writers and readers. Users can view the blogs what others have uploaded. Used Firebase to upload images online.
+Github Frontend : https://github.com/saisandeepkoritala/Blog-client
+Github Backend : https://github.com/saisandeepkoritala/Blog-server
+Live Site  : https://saisandeep-blog.netlify.app/
+
+Project Name : CrickWikepedia Site
+About Project : A data-driven cricket analytics and historical archiving platform engineered to deliver comprehensive match performance insights. Built using the MERN stack and TypeScript, Crickwikipedpedia allows users to dive deep into extensive historical scorecards, featuring full coverage of Test matches spanning from the year 2000 through April 2026, alongside a complete archive of Indian Premier League (IPL) matches from its inception in 2008 through the 2026 season. Designed with scalability in mind, the platform’s data architecture is structured around a flexible schema currently optimized for granular Test match metrics, with an active roadmap to expand into One Day International (ODI) tracking. The frontend utilizes React and Tailwind CSS to transform dense statistical datasets—including detailed over-by-over breakdowns, batting splits, and bowling figures—into clean, highly readable, and interactive user dashboards.
+Github Frontend : https://github.com/saisandeepkoritala/CrickInfo-client
+Github Backend : https://github.com/saisandeepkoritala/CrickInfo-Server
+Live Site  : https://saisandeep-koritala-crickinfo.netlify.app/
+
+Project Name : Wellness Tracker
+About Project : An all-in-one, full-stack wellness and lifestyle tracking platform engineered to help users manage their daily health data across nutrition, fitness, and skincare routines. Built using the React and TypeScript, the application features an intelligent nutrition engine where users log their daily meals to instantly calculate and aggregate essential macronutrients—including total calories, fats, carbohydrates, and protein—maintaining an organized historical dashboard of their daily dietary stats. In tandem, the platform includes a dynamic fitness logger that tracks physical activity by recording workout types, duration, and intensity levels to provide precise insights into daily energy expenditure. Extending beyond traditional trackers, the system incorporates a dedicated skincare regimen logger and an intuitive forecasting planner, enabling users to map out and schedule tomorrow's meals, workouts, and self-care routines in advance. The frontend delivers a highly responsive, modern UI built with Tailwind CSS, transforming complex daily personal health metrics into clean, scannable, and actionable statistical insights.Used firebase to store information online.
+Github Frontend : https://github.com/saisandeepkoritala/Wellness
+Live Site  : https://saisandeepkoritala-wellness.netlify.app/
+
+Project Name : Admin Dashboard
+About Project : An enterprise-grade administrative dashboard application engineered during my Master's program to emulate a production-ready business intelligence platform. Built using React and TypeScript, the project focuses heavily on advanced data visualization, leveraging performance-optimized charting libraries to transform complex datasets into interactive, real-time visual analytics. The dashboard utilizes meticulously structured mock data to simulate live corporate KPIs, operational metrics, and user behavioral trends across a variety of responsive chart formats, including multi-axis line graphs, bar charts, and data density maps. The interface is styled with Tailwind CSS to deliver a sleek, modern, and highly professional layout featuring collapse-ready navigation sidebars and synchronized dark-mode capabilities. By focusing on rapid client-side rendering and clean state separation, the project demonstrates a robust understanding of front-end architecture, dashboard usability design, and fluid data aggregation.
+Github Frontend : https://github.com/saisandeepkoritala/DashBoard
+Live Site  : https://saisandeep-dashboard.netlify.app/
+
+Project Name : Booking.com clone
+About Project : A high-performance, full-stack travel reservation platform engineered as a comprehensive clone of Booking.com to manage hotel, car rental, and travel location searches. Developed using Next.js and TypeScript, the application takes full advantage of Server-Side Rendering (SSR) and Incremental Static Regeneration (ISR) to deliver exceptionally fast page load speeds, robust SEO optimization, and dynamic content delivery. The platform features an advanced, multi-parameter search engine allowing users to seamlessly filter and query accommodation availability, vehicle rental tiers, and geographic destinations. The user interface leverages Tailwind CSS to replicate a clean, modern, and highly responsive booking flow, ensuring a fluid user experience from discovery to selection. By implementing structured API routing and optimized client-side state caching, the project demonstrates a sophisticated understanding of modern meta-search architectures, efficient data fetching strategies, and scalable component design.
+Github Frontend : https://github.com/saisandeepkoritala/next-booking
+Live Site  : https://next-booking-saisandeepkoritala.vercel.app/
+
+
+Project Name : LookUpFlights
+About Project : A high-performance, full-stack travel reservation and exploration engine engineered as a comprehensive clone of Booking.com to manage hotel, car rental, and travel location searches. Developed using Next.js and TypeScript, the application takes full advantage of Server-Side Rendering (SSR) and Incremental Static Regeneration (ISR) to deliver exceptionally fast page load speeds, robust SEO optimization, and dynamic content delivery. The platform features an advanced, multi-parameter search engine allowing users to seamlessly filter and query accommodation availability, vehicle rental tiers, and geographic destinations. Additionally, the application includes a specialized live flight tracking dashboard; while functionally complete on the frontend, its live production data stream is intentionally simulated using a robust mock-data layer due to the restrictive commercial paywalls of modern aviation data providers. The user interface leverages Tailwind CSS to replicate a clean, modern, and highly responsive booking flow, demonstrating a sophisticated understanding of modern meta-search architectures, efficient data fetching strategies, and scalable component design.
+GitHub Frontend : https://github.com/saisandeepkoritala/Airplanes-client
+GitHub Backend : https://github.com/saisandeepkoritala/Airplanes-server
+Live Site : https://saisandeepkoritala-airplane.netlify.app/
+
+
+Project Name : Dream11 Clone
+About Project : A high-performance, full-stack fantasy sports platform engineered as a comprehensive clone of Dream11 to simulate real-time virtual team creation and contest management. Developed using the MERN stack and TypeScript, the application features an intricate sports informatics engine where users utilize a strategic credit budget system to draft virtual lineups from upcoming real-world matches. The platform implements complex validation logic to enforce standard contest rules, such as positional constraints, maximum players per team, and designated multiplier roles like Captain and Vice-Captain. The frontend utilizes React and Tailwind CSS to deliver a highly responsive, mobile-first user interface that renders live point updates, real-time leaderboard point calculations, and dynamic contest point tracking. Powered by MongoDB for handling fast, relational user contest data, the project demonstrates a sophisticated grasp of state synchronization, structured data indexing for rapid leaderboard processing, and clean, component-driven game architecture.
+GitHub Frontend : https://github.com/saisandeepkoritala/Dream11-client
+GitHub Backend : https://github.com/saisandeepkoritala/Dream11-server
+Live Site : https://saisandeep-koritala-dream11.netlify.app/
+
+
+Project Name : MovieFlix
+About Project : An expansive, full-stack media discovery platform engineered to serve as a comprehensive global entertainment database where users can explore movies and television shows from all languages around the world. Developed using the MERN stack and TypeScript, the application integrates with extensive, production-grade entertainment APIs to aggregate massive datasets across international cinema, regional broadcasting, and global streaming networks. The platform features an advanced multi-lingual search and filtering matrix that allows users to instantly query media assets by language, country of origin, genre, release timelines, and user ratings. The frontend utilizes React and Tailwind CSS to deliver a highly responsive, cinematic user interface featuring media carousels, dense cast lists, localized plot summaries, and dynamic media trailers. Backed by MongoDB for fast user bookmarking and localized search caching, the project demonstrates a sophisticated understanding of handling cross-border data structures, asynchronous third-party data aggregation, and highly scalable, media-rich UI layout design.
+GitHub Frontend : https://github.com/saisandeepkoritala/Movies-client
+GitHub Backend : https://github.com/saisandeepkoritala/Movies-server
+Live Site : https://saisandeep-movies-app.netlify.app/
+
+Project Name : Reciepe App
+About Project : A modern, client-side recipe discovery and culinary management application built using React and TypeScript to deliver a fast, interactive cooking experience. The platform features an advanced multi-criteria search engine that allows food enthusiasts to dynamically filter and explore thousands of global recipes by ingredients, dietary restrictions, meal types, and preparation timelines. The user interface leverages Tailwind CSS to create a clean, media-rich layout featuring responsive step-by-step cooking guides, dynamic serving-size scaling logic, and interactive ingredient check-off lists. By utilizing optimized client-side state management to handle custom recipe bookmarking and real-time nutritional breakdowns, the project showcases a strong mastery of responsive component design, fluid layout engineering, and intuitive asynchronous data-fetching patterns.
+GitHub Frontend : https://github.com/saisandeepkoritala/Reciepe-client
+Live Site : https://saisandeep-reciepe-app.netlify.app/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
