@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "build": "tsc",
-  "prestart": "npm run build",
+  "build": "tsc --project tsconfig.json",
   "start": "node dist/index.js",
   "dev": "tsx --watch src/index.ts"
 },

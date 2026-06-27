@@ -1,22 +1,22 @@
 {
     "compilerOptions": {
         "target": "es2022",
-        "module": "esnext",
-        "moduleResolution": "bundler",
-        "lib": ["Es2022","DOM"],
+        "module": "NodeNext",              /* Changed for native Node environment */
+        "moduleResolution": "NodeNext",    /* Changed for native Node environment */
+        "lib": ["Es2022"],
         "strict": true,
         "esModuleInterop": true,
         "resolveJsonModule": true,
         "skipLibCheck": true,
-        "noEmit": true,
+        "noEmit": false,                   /* FIXED: Changed to false so files are created */
         "types": ["node"],
-        "outDir": "./dist",       /* Redirect output structure to the directory. */
-        "rootDir": "./src" ,       
+        "outDir": "./dist",      
+        "rootDir": "./src",       
         "baseUrl": ".",
         "ignoreDeprecations": "6.0",
         "paths": {
             "@/*": ["./src/*"]
         }
     },
-    "include": ["src"]
+    "include": ["src/**/*"]                /* Fixed to include all nested files/folders */
 }
