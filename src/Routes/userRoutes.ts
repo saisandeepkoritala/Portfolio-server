@@ -1,8 +1,7 @@
 import express from 'express';
-import {saveInfo, feedbackUser,} from "@/Controllers/userController";
+import {feedbackUser,isAlive} from "@/Controllers/userController";
 
 export const router = express.Router();
 
-
-router.route("/saveInfo").post(saveInfo); 
+router.route("/isAlive").get(isAlive)
 router.route("/feedbackUser").post(feedbackUser);

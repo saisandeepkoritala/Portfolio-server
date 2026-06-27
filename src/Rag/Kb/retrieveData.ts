@@ -7,7 +7,7 @@ export interface RetrieverResult {
 };
 
 export async function retreiveRelevantChunks
-(query : string, k : number=5) : Promise<RetrieverResult>{
+(query : string, k : number = 5) : Promise<RetrieverResult>{
 
     if(!query.trim()){
         return {

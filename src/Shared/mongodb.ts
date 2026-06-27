@@ -11,7 +11,7 @@ export async function getMongoClient(): Promise<MongoClient> {
   if (!client) {
     client = new MongoClient(env.DATABASE_URI);
     await client.connect();
-    console.log("🍃 Native MongoClient Connected securely for LangChain");
+    console.log("MongoClient Connected securely");
   }
   return client;
 }

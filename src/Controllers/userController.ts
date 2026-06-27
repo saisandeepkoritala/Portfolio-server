@@ -1,27 +1,6 @@
 import { Request, Response } from 'express';
-import {User} from '@/Models/userModel';
 import { Feedback } from '@/Models/feedbackModel';
 
-export const saveInfo = async(req : Request,res : Response)=>{
-    try{
-        const user = await User.create({
-            Address:req.body.Address,
-            Time:req.body.Time
-        })
-
-        res.status(200).json({
-            status:"success",
-            userData:user
-        })
-    }
-    catch(e){
-        console.log(e)
-        res.status(400).json({
-            status:"fail",
-            error:e
-        })
-    }
-};
 
 export const feedbackUser = async(req : Request,res : Response)=>{
     try{
@@ -46,3 +25,18 @@ export const feedbackUser = async(req : Request,res : Response)=>{
         })
     }
 };
+
+export const isAlive = async(req : Request,res : Response)=>{
+    try{
+        res.status(200).json({
+            status:"Success",
+            message:"Server is Alive..."
+        })
+    }
+    catch(err : any){
+        res.status(500).json({
+            status : "Something went wrong...",
+            error:err
+        })
+    }
+}

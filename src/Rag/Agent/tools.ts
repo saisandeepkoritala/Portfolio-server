@@ -13,8 +13,8 @@ export const kbSearchTool = tool(
                 doc?.metadata?._chunkIndex as number
             );
 
-            const preview = doc.pageContent.length > 400 ? 
-                doc.pageContent.slice(0, 400) + '...' : doc.pageContent;
+            // If needed can trim long documents by cutting pageContent to 400 - 500.
+            const preview = doc.pageContent;
 
             return {
                 source,
@@ -22,7 +22,7 @@ export const kbSearchTool = tool(
                 preview
             };
         });
-
+        
         return JSON.stringify({
             confidence,
             context
