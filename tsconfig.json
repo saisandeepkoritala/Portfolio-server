@@ -11,6 +11,8 @@
         "noEmit": true,
         "types": ["node"],
         "baseUrl": ".",
+        "outDir": "./dist",       /* <--- MAKE SURE THIS IS UNCOMMENTED AND SET TO ./dist */
+        "rootDir": "./src",        /* <--- Ensure this points to your source folder */
         "ignoreDeprecations": "6.0",
         "paths": {
             "@/*": ["./src/*"]
