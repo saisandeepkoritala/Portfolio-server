@@ -12,7 +12,7 @@ mongoose.connect(DB_URI, {
 })
   .then(() => {
     console.log("Connection is Successful to DB via Mongoose...");
-    app.listen(env.PORT, () => {
+    app.listen(5000, () => {
       console.log(`Server Running on port ${env.PORT}`);
     });
   })
