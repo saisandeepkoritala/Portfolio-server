@@ -10,9 +10,9 @@
         "skipLibCheck": true,
         "noEmit": true,
         "types": ["node"],
+        "outDir": "./dist",       /* Redirect output structure to the directory. */
+        "rootDir": "./src" ,       
         "baseUrl": ".",
-        "outDir": "./dist",       /* <--- MAKE SURE THIS IS UNCOMMENTED AND SET TO ./dist */
-        "rootDir": "./src",        /* <--- Ensure this points to your source folder */
         "ignoreDeprecations": "6.0",
         "paths": {
             "@/*": ["./src/*"]
