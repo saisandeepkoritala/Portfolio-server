@@ -22,8 +22,8 @@ ENV NODE_ENV=production
 # Copy package files
 COPY package*.json ./
 
-# Install ONLY production dependencies to keep the image small
-RUN npm ci --only=production
+# Install ONLY production dependencies using modern npm flags
+RUN npm ci --omit=dev
 
 # Copy compiled JavaScript code from the builder stage
 COPY --from=builder /app/dist ./dist
