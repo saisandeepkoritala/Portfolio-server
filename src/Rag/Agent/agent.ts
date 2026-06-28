@@ -33,6 +33,7 @@ export async function runProductAgent(
         if (isGreet) return { answer: text, citations: [] };
         
         const newMessage = { role: messages.role, content: text };
+        console.log("User message ",newMessage)
 
         const result = await ProductAgent.invoke(
             { messages : [newMessage] },
