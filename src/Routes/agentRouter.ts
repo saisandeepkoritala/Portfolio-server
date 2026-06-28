@@ -16,12 +16,12 @@ agentRouter.post("/chat", async (req : Request, res : Response) => {
 
     const extractedThreadId = await ensureThreadId(threadId);
 
-    const result = await runProductAgent([
+    const result = await runProductAgent(
       {
         role: "user",
         content: question,
       },
-    ]);
+    );
 
     const extractedAnswer = result.answer;
 

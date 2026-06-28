@@ -3,8 +3,8 @@ import { createAgent, toolStrategy } from 'langchain';
 import { chatModel } from '@/Shared/openai';
 import { agentTools } from './tools';
 import { POLICY_TEXT } from './policy';
+import { handleUserMessage } from './checkIfGreet';
 
-// The strict structured schema output expected by your frontend portfolio
 const AgentResponseSchema = z.object({
     answer: z.string(),
     citations: z.array(
@@ -16,7 +16,6 @@ const AgentResponseSchema = z.object({
     ),
 });
 
-// GuardRails
 const SYSTEM_PROMPT_WITH_ROUTING = `${POLICY_TEXT}`;
 
 export const ProductAgent = createAgent({
@@ -27,29 +26,34 @@ export const ProductAgent = createAgent({
 });
 
 export async function runProductAgent(
-    messages: { role: string, content: string }[]
+    messages: { role: string, content: string }
 ) {
     try {
+        const { text, isGreet } = handleUserMessage(messages.content);
+        if (isGreet) return { answer: text, citations: [] };
+        
+        const newMessage = { role: messages.role, content: text };
+
         const result = await ProductAgent.invoke(
-            { messages },
+            { messages : [newMessage] },
             { recursionLimit: 5 }
         );
+        
         if (result?.structuredResponse) {
             return {
                 answer: result.structuredResponse.answer,
                 citations: result.structuredResponse.citations || []
             };
-        }
-        else{
-            // Can try one shot repair.
+        } else {
             return {
                 answer: "Something went wrong.........",
                 citations: []
-                }
+            };
         }
     } catch (error) {
         console.error("Agent hit a recursion path limit or runtime error:", error);
     }
+    
     return {
         answer: "I hit a small reasoning loop while reading my documents. Could you please rephrase your question slightly?",
         citations: []
