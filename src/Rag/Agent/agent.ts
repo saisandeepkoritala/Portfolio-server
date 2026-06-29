@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import { createAgent, toolStrategy } from 'langchain';
 import { chatModel } from '@/Shared/openai';
-import { agentTools } from './tools';
-import { POLICY_TEXT } from './policy';
-import { handleUserMessage } from './checkIfGreet';
+import { agentTools } from '@/Rag/Agent/tools';
+import { POLICY_TEXT } from '@/Rag/Agent/policy';
+import { handleUserMessage } from '@/Rag/Agent/checkIfGreet';
 
 const AgentResponseSchema = z.object({
     answer: z.string(),
@@ -16,27 +16,25 @@ const AgentResponseSchema = z.object({
     ),
 });
 
-const SYSTEM_PROMPT_WITH_ROUTING = `${POLICY_TEXT}`;
-
 export const ProductAgent = createAgent({
     model: chatModel,
     tools: agentTools,
-    systemPrompt: SYSTEM_PROMPT_WITH_ROUTING,
+    systemPrompt: POLICY_TEXT,
     responseFormat: toolStrategy(AgentResponseSchema)
 });
 
-export async function runProductAgent(
-    messages: { role: string, content: string }
-) {
+export async function runProductAgent(messages: { role: string, content: string }) {
     try {
-        const { text, isGreet } = handleUserMessage(messages.content);
+
+        const {role,content} = messages;
+
+        const { text, isGreet } = handleUserMessage(content);
         if (isGreet) return { answer: text, citations: [] };
         
-        const newMessage = { role: messages.role, content: text };
-        console.log("User message ",newMessage)
+        const newMessageToModel = { role: role, content: text };
 
         const result = await ProductAgent.invoke(
-            { messages : [newMessage] },
+            { messages : [newMessageToModel] },
             { recursionLimit: 5 }
         );
         
@@ -51,10 +49,10 @@ export async function runProductAgent(
                 citations: []
             };
         }
-    } catch (error) {
+    } 
+    catch (error) {
         console.error("Agent hit a recursion path limit or runtime error:", error);
     }
-    
     return {
         answer: "I hit a small reasoning loop while reading my documents. Could you please rephrase your question slightly?",
         citations: []
