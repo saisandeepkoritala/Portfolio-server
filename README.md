@@ -1,4 +1,4 @@
-# Custom RAG & Agentic Backend
+# Custom RAG & Agentic Backend 
 
 A robust, TypeScript-based backend engineered for a Retrieval-Augmented Generation (RAG) system combined with an intelligent AI Agent framework. Built on top of the MERN stack paradigm, this service handles advanced document ingestion, vector embeddings, semantic knowledge retrieval, and autonomous agent workflows.
 
@@ -10,7 +10,7 @@ A robust, TypeScript-based backend engineered for a Retrieval-Augmented Generati
 * **Autonomous AI Agents**: Multi-functional agent loop featuring memory management, tool execution, and policy control.
 * **Vector Database Integration**: High-performance semantic search using vector storage.
 * **Extensible Routing**: Clear separation of concerns with dedicated routes for User management, Knowledge Base (KB) operations, and Agent interactions.
-* **Strict TypeScript Implementation**: Type-safety across all controllers, models, routes, and shared configurations.
+* **Strict TypeScript Implementation**: Type-safety across all controllers, models, routes, and shared Used Zod for validation 
 
 ---
 
