@@ -8,7 +8,7 @@ A robust, TypeScript-based backend engineered for a Retrieval-Augmented Generati
 
 * **Modular RAG Architecture**: Complete pipeline for data handling including splitting, loading, vector store management, and semantic retrieval.
 * **Autonomous AI Agents**: Multi-functional agent loop featuring memory management, tool execution, and policy control.
-* **Vector Database Integration**: High-performance semantic search using vector storage.
+* **Vector Database Integration**: High-performance semantic search using vector storage. Used Mongodb for storing.
 * **Extensible Routing**: Clear separation of concerns with dedicated routes for User management, Knowledge Base (KB) operations, and Agent interactions.
 * **Strict TypeScript Implementation**: Type-safety across all controllers, models, routes, and shared.Used Zod for validation 
 
