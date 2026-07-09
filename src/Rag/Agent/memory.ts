@@ -19,7 +19,6 @@ export interface ConversationDoc {
     updatedAt : Date
 };
 
-
 const conversation_collection = 'conversations';
 
 let convCollectionPromise : Promise<Collection<ConversationDoc>> | null = null;
@@ -39,67 +38,95 @@ export function getConversationsCollection(): Promise<Collection<ConversationDoc
     return convCollectionPromise;
 }
 
+export async function ensureThreadId(isThreadIdPresent ?: string): Promise<string> {
+    const col = await getConversationsCollection();
 
-export async function ensureThreadId(isThreadIdPresent ?: string) :Promise<string>{
-    //const col = await getConversationsCollection();
-
-    if(isThreadIdPresent){
-        //const existing = await col.findOne({threadId : isThreadIdPresent});
-        //if(existing) return isThreadIdPresent;
-        return isThreadIdPresent;
+    if (isThreadIdPresent) {
+        // Double check if it actually exists in our DB
+        const existing = await col.findOne({ threadId: isThreadIdPresent });
+        if (existing) return isThreadIdPresent;
     }   
 
+    // Generate a new thread ID if missing or not found in DB
     const threadId = nanoid(12);
-    //const now = new Date();
+    const now = new Date();
 
-    // await col.insertOne({
-    //         threadId,
-    //         messages : [],
-    //         createdAt : now,
-    //         updatedAt : now
-    // });
+    // CRITICAL: Insert the base document structure so it exists for future updates
+    await col.insertOne({
+        threadId,
+        messages: [],
+        createdAt: now,
+        updatedAt: now
+    });
 
     return threadId;
-};
+}
 
+export async function getHistory(threadId: string) {
+    const col = await getConversationsCollection();
+    const conv = await col.findOne({ threadId });
 
-// export async function getHistory(threadId : string){
+    if (!conv) return [];
 
-//     const col = await getConversationsCollection();
-//     const conv : WithId<ConversationDoc> | null = await col.findOne({threadId});
+    return conv.messages.map(msg => ({
+        role: msg.role,
+        content: msg.content,
+    }));
+}
 
-//     if(!conv) return []
+export async function appendToHistory(threadId: string, ...messages: ChatMessage[]): Promise<void> {
+    if (!messages.length) return;
 
-//     return conv.messages.map(msg =>({
-//         role : msg.role,
-//         content : msg.content,
-//     }));
-// };
+    const col = await getConversationsCollection();
 
-// export async function appendToHistory(threadId : string,...messages : ChatMessage[])
-// : Promise<void>{
-//     if(!messages.length) return;
+    const messagesWithTs = messages.map(msg => ({
+        role: msg.role,
+        content: msg.content,
+    }));
 
-//     const col = await getConversationsCollection();
+    await col.updateOne(
+        { threadId },
+        {
+            $push: {
+                messages: {
+                    $each: messagesWithTs
+                }
+            },
+            $set: {
+                updatedAt: new Date()
+            }
+        }
+    );
+}
 
-//     // Double verifying message types we recieve.
-//     const messagesWithTs = messages.map(msg=>({
-//         role : msg.role,
-//         content : msg.content,
-//     }));
+export interface ErrorLogDoc {
+    threadId?: string;
+    errorName: string;
+    errorMessage: string;
+    errorStack?: string;
+    context?: any;
+    timestamp: Date;
+}
 
-//     await col.updateOne(
-//         {threadId},
-//         {
-//             $push:{
-//                 messages:{
-//                     $each : messagesWithTs
-//                 }
-//             },
-//             $set:{
-//                 updatedAt : new Date()
-//             }
-//         }
-//     )
-// };
+const error_collection = 'error_logs';
 
+export async function logErrorToDb(error: unknown, threadId?: string, context?: any): Promise<void> {
+    try {
+        const db = await getDb(); // Assuming getDb() is imported here
+        const col = db.collection<ErrorLogDoc>(error_collection);
+
+        const errorObj = error instanceof Error ? error : new Error(String(error));
+
+        await col.insertOne({
+            threadId,
+            errorName: errorObj.name,
+            errorMessage: errorObj.message,
+            errorStack: errorObj.stack,
+            context: context || null,
+            timestamp: new Date()
+        });
+    } catch (loggingError) {
+        // Fallback to console if writing to the database itself fails
+        console.error("Failed to write log to MongoDB:", loggingError);
+    }
+}
