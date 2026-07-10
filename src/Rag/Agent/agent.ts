@@ -4,7 +4,7 @@ import { chatModel } from '@/Shared/openai';
 import { agentTools } from '@/Rag/Agent/tools';
 import { POLICY_TEXT } from '@/Rag/Agent/policy';
 import { handleUserMessage } from '@/Rag/Agent/checkIfGreet';
-import { logErrorToDb } from '@/Rag/Agent/memory'; // 1. Import your new logger
+import { logErrorToDb } from '@/Rag/Agent/memory';
 
 const AgentResponseSchema = z.object({
     answer: z.string(),
@@ -24,39 +24,37 @@ export const ProductAgent = createAgent({
     responseFormat: toolStrategy(AgentResponseSchema)
 });
 
-// 2. Added optional threadId parameter
-export async function runProductAgent(messages: { role: string, content: string }[], threadId?: string) {
+export async function runProductAgent(
+  history: { role: string; content: string }[], 
+  userMessage: { role: string; content: string }, 
+  threadId?: string
+) {
     try {
-        if (messages.length === 0) {
-            return { answer: "No messages provided.", citations: [] };
+        if (userMessage.content.trim() === "") {
+            return { answer: "No user message provided.", citations: [] };
         }
 
         // 1. Filter out past loop/error messages so they don't confuse the agent
-        const filteredHistory = messages.filter(msg => 
+        const filteredHistory = history.filter(msg => 
             !msg.content.includes("I hit a small reasoning loop") &&
             !msg.content.includes("Something went wrong")
         );
 
-        if (filteredHistory.length === 0) {
-            return { answer: "Hello! How can I help you today?", citations: [] };
+        // 2. Grab and clean the CURRENT user message
+        const { text, isGreet } = handleUserMessage(userMessage.content);
+        
+        // If the user's initial or current message is just a greeting, handle it immediately
+        if (isGreet) {
+            return { answer: text, citations: [] };
         }
-
-        // 2. Grab and clean ONLY the last message
-        const lastMessage = filteredHistory[filteredHistory.length - 1];
-        const { text, isGreet } = handleUserMessage(lastMessage.content);
         
-        if (isGreet) return { answer: text, citations: [] };
-        
-        // 3. Reconstruct the clean message history
+        // 3. Reconstruct the clean message history (Preserve ALL history + append current message)
         const cleanedMessages = [
-            ...filteredHistory.slice(0, -1),
-            { role: lastMessage.role, content: text }
+            ...filteredHistory,
+            { role: userMessage.role, content: text }
         ];
 
-        // LOG FOR DEBUGGING - Check what the LLM actually receives now
-        //console.log("Filtered Messages sent to Agent invoke:", cleanedMessages);
-
-        // 4. Invoke with an increased recursion limit (give tool strategy breathing room)
+        // 4. Invoke Agent
         const result = await ProductAgent.invoke(
             { messages: cleanedMessages }, 
             { recursionLimit: 6 } 
@@ -77,7 +75,8 @@ export async function runProductAgent(messages: { role: string, content: string 
     } 
     catch (error) {
         console.error("Agent hit a recursion path limit or runtime error:", error);
-        await logErrorToDb(error, threadId, { userPrompt: messages[messages.length - 1]?.content });
+        // Cast error to 'any' or check type if your database logger requires a specific type
+        await logErrorToDb(error as any, threadId, { userPrompt: userMessage.content });
     }
 
     return {

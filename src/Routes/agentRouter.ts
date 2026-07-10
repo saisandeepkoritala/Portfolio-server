@@ -1,7 +1,6 @@
 import { Router, Request, Response } from "express";
 import { runProductAgent } from "@/Rag/Agent/agent";
 import { ensureThreadId, getHistory, appendToHistory } from "@/Rag/Agent/memory"; 
-// Imported missing methods
 
 export const agentRouter = Router();
 
@@ -23,9 +22,8 @@ agentRouter.post("/chat", async (req: Request, res: Response) => {
     // 3. Define the new user message object
     const userMessage = { role: "user" as const, content: question };
 
-    // 4. Run your agent (Pass 'history' into runProductAgent if it accepts it!)
-    // e.g., runProductAgent(userMessage, history)
-    const result = await runProductAgent([...history, userMessage], extractedThreadId);
+    // 4. Run your agent
+    const result = await runProductAgent(history, userMessage, extractedThreadId);
     const extractedAnswer = result.answer;
 
     const assistantMessage = { role: "assistant" as const, content: extractedAnswer };
