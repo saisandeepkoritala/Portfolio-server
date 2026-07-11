@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { createAgent, toolStrategy } from 'langchain';
+import { createAgent, providerStrategy } from 'langchain';
 import { chatModel } from '@/Shared/openai';
 import { agentTools } from '@/Rag/Agent/tools';
 import { POLICY_TEXT } from '@/Rag/Agent/policy';
@@ -21,7 +21,7 @@ export const ProductAgent = createAgent({
     model: chatModel,
     tools: agentTools,
     systemPrompt: POLICY_TEXT,
-    responseFormat: toolStrategy(AgentResponseSchema)
+    responseFormat: providerStrategy(AgentResponseSchema)
 });
 
 export async function runProductAgent(
