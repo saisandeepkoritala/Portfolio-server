@@ -40,7 +40,7 @@ export async function runProductAgent(
             !msg.content.includes("Something went wrong")
         );
 
-        // 2. Grab and clean the CURRENT user message
+        // 2.1 Grab and clean the CURRENT user message
         const { text, isGreet } = handleUserMessage(userMessage.content);
         
         // If the user's initial or current message is just a greeting, handle it immediately

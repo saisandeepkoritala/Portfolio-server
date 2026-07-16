@@ -22,7 +22,7 @@ const feedbackSchema = new mongoose.Schema({
     Time:{
         type:Date,
         required:[true,"Time is Needed"]
-    }
+    },
 }) 
 
 export const Feedback = mongoose.model("feedback",feedbackSchema);
