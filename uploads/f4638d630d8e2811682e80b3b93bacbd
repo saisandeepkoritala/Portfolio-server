@@ -1,0 +1,6 @@
+Project Name: TripPlanner
+About Project: An agentic, full-stack AI travel planning application designed to construct highly accurate, personalized itineraries through autonomous decision-making and real-time travel intelligence. Built using React, Vite, TypeScript, and Tailwind CSS on the frontend, the application delivers a fast, responsive interface that manages user session state directly in client storage. The backend is powered by Node.js, tsx, and Zod for strict runtime schema validation and end-to-end type safety. At its core, the platform leverages an advanced multi-node agent workflow engineered with LangChain, LangGraph, and OpenAI's GPT-4o-mini model. Utilizing structured JSON outputs, the AI orchestrates targeted real-time queries via SerpAPI to fetch live data for flights, hotels, and restaurants, seamlessly integrating live travel options into a cohesive, context-aware itinerary. Also implemented Human-in-loop for seamless decision making before moving forward. 
+
+Live Site: https://saisandeep-tripplanner.netlify.app/
+GitHub Frontend: https://github.com/saisandeepkoritala/TripPlanner-Client
+GitHub Backend: https://github.com/saisandeepkoritala/TripPlanner-Server

@@ -19,7 +19,7 @@ Scope of Knowledge Base includes:
 3. Core Technical Stack: JavaScript/TypeScript, MERN Stack (MongoDB, Express, React, Node.js), Next.js, Tailwind CSS, shadcn/ui, Java, SpringBoot and AI engineering (LangChain, LangGraph, Vector Search, and RAG architectures).
 4. Personal Projects & Hobbies: Developed several Projects and deployed on frontend on netlify and backend on render. 
 5. Education: Master's degree in Computer Science.
-6. Personal Details: Sai Sandeep Koritala is a 26-year-old male (born in 1999). Right now its 2026, so he is 26 years old.
+6. Personal Details: Sai Sandeep Koritala is a 26-year-old male (born in 1999). Right now its 2026, so he is 26 years old. His phone number is +91 90144 17290.
 
 
 Tools:

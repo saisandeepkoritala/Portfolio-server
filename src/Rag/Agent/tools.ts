@@ -4,7 +4,7 @@ import { retreiveRelevantChunks } from '@/Rag/Kb/retrieveData';
 
 export const kbSearchTool = tool(
     async ({ question }) => {
-        const { docs, confidence } = await retreiveRelevantChunks(question, 5);
+        const { docs, confidence } = await retreiveRelevantChunks(question, 10);
 
         const context = docs.map((doc) => {
             const source = (doc?.metadata?.source as string) || 'Unknown source';
