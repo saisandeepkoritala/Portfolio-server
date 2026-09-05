@@ -17,11 +17,23 @@ const AgentResponseSchema = z.object({
     ),
 });
 
+// Generate current date and time string dynamically
+const currentDateTime = new Date().toLocaleString("en-US", {
+  dateStyle: "full",
+  timeStyle: "medium",
+});
+
+const systemPromptWithContext = `
+${POLICY_TEXT}
+
+Current Date and Time: ${currentDateTime}
+`.trim();
+
 export const ProductAgent = createAgent({
-    model: chatModel,
-    tools: agentTools,
-    systemPrompt: POLICY_TEXT,
-    responseFormat: providerStrategy(AgentResponseSchema)
+  model: chatModel,
+  tools: agentTools,
+  systemPrompt: systemPromptWithContext,
+  responseFormat: providerStrategy(AgentResponseSchema)
 });
 
 export async function runProductAgent(
